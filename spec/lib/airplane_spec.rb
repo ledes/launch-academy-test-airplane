@@ -1,7 +1,7 @@
 require_relative "../../lib/airplane"
 
 describe Airplane do
-  let(:airplane) { Airplane.new("cesna", 10, 150, 100) }
+  let(:airplane) { Airplane.new("cesna", 10, 150, 150) }
   describe "#initialization" do
     it "should create an Airplane object" do
       expect(airplane).to be_a(Airplane)
@@ -18,11 +18,9 @@ describe Airplane do
     it "should return the type of the plane" do
       expect(airplane.horsepower).to eq(150)
     end
-
   end
 
   describe "#land" do
-
     it "should return the string 'airplane not started, please start'" do
       expect(airplane.land).to eq('airplane not started, please start')
     end
@@ -61,4 +59,23 @@ describe Airplane do
       expect(airplane.start).to eq('airplane already started')
     end
   end
+
+  describe "#fuel"
+    it "should return the string'not enought fuel'" do
+      airplane.fuel = 0
+      expect(airplane.start).to eq('not enought fuel')
+    end
+
+    it "should return the string'not enought fuel'" do
+      airplane.start
+      airplane.fuel = 0
+      expect(airplane.takeoff).to eq('not enought fuel')
+    end
+
+    it "should return the string'Not enought fuel for landing, prepare to die'" do
+      airplane.start
+      airplane.takeoff
+      airplane.fuel = 0
+      expect(airplane.land).to eq('Not enought fuel for landing, prepare to die')
+    end
 end

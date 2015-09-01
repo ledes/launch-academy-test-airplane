@@ -43,7 +43,6 @@ class Airplane
     end
   end
 
-
   def start
     if fuel > 20
       if @engine == 'off'
